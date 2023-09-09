@@ -66,15 +66,6 @@ public class Main {
 
 		student.add(s1);
 		
-//      INSTITUTE DATA
-		
-//		Institute i=new Institute();
-//		System.out.println(i.getTotalNumberOfStudents());
-//		i.setTotalNumberOfStudents(student.size());
-//		System.out.println(i.getTotalNumberOfStudents());
-//		System.out.println(i.getBalance());
-//		i.setBalance(50);
-		
 //		STARTING PROGRAM
 
 		System.out.println("+++++++++++++++[    Admin Panel    ]++++++++++++++++++");
