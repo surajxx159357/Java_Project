@@ -2,6 +2,7 @@ package institute_management;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -73,6 +74,7 @@ public class Main {
 //		System.out.println(i.getTotalNumberOfStudents());
 //		System.out.println(i.getBalance());
 //		i.setBalance(50);
+		
 //		STARTING PROGRAM
 
 		System.out.println("+++++++++++++++[    Admin Panel    ]++++++++++++++++++");
@@ -84,9 +86,9 @@ public class Main {
 	public static void admin(List<Trainer>trainer,List<Student>student,List<Employee>employee)
 	{
 		System.out.println();
-		System.out.print("Enter username ");
+		System.out.print("Enter username "+"\u27A4");
 		String uname=sc.next();
-		System.out.print("Enter password ");
+		System.out.print("Enter password "+"\u27A4");
 		String upass=sc.next();
 		
 		if(uname.equals(Institute.getAdmin()) && upass.equals(Institute.getPassword()))
@@ -106,31 +108,33 @@ public class Main {
 //  ====================================================Menu====================================================
 
 	public static void menu(List<Trainer> trainer, List<Student> student, List<Employee> employee) {
+		
 		System.out.println("Choose the Section: ");
 		System.out.println("1.Student");
 		System.out.println("2.Trainer");
 		System.out.println("3.Employee");
 		System.out.println("4.End The Program");
 		System.out.print("\u27A4");
-		int in = sc.nextInt();
-		switch (in) {
-		case 1:
-			sOptions(student);
-			break;
-		case 2:
-			tOptions(trainer);
-			break;
-		case 3:
-			eOptions(employee);
-			break;
-		case 4:
-			exit();
-			break;
-		default:
-			System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
-			break;
-		}
-
+		
+			int in = sc.nextInt();
+			 
+			switch (in) {
+			case 1:
+				sOptions(student);
+				break;
+			case 2:
+				tOptions(trainer);
+				break;
+			case 3:
+				eOptions(employee);
+				break;
+			case 4:exit();
+				break;
+			default:
+				System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
+				break;
+			}
+	
 	}
 
 //	===========================================exit() method===================================================
@@ -138,6 +142,7 @@ public class Main {
 	public static void exit() {
 		System.out.println();
 		System.out.println("\u263A" + " " + "\u263A" + " Thank You ,Good Day " + "\u263A" + " " + "\u263A");
+		
 	}
 
 //	=======================================TRAINER SECTION STARTS HERE=============================================
@@ -146,9 +151,9 @@ public class Main {
 
 	public static void printT(List<Trainer> trainer) {
 		for (int i = 0; i < trainer.size(); i++) {
-			System.out.println(trainer.get(i).id + "\n" + trainer.get(i).name);
-			System.out.println(trainer.get(i).contact + "\n" + trainer.get(i).email);
-			System.out.println(trainer.get(i).sub + "\n" + trainer.get(i).exp + " y");
+			System.out.println("ID: "+trainer.get(i).id + "\n" + "NAME: "+trainer.get(i).name);
+			System.out.println("CONTACT: "+trainer.get(i).contact + "\n" +"EMAIL: "+ trainer.get(i).email);
+			System.out.println("SUBJECT: "+trainer.get(i).sub + "\n" + "EXPERIENCE: "+trainer.get(i).exp + " y");
 			System.out.println();
 
 		}
@@ -194,7 +199,7 @@ public class Main {
 	// removing the trainer
 
 	public static void removeT(List<Trainer> trainer) {
-		System.out.print("enter trainer id: ");
+		System.out.print("enter trainer ID: ");
 		int tid = sc.nextInt();
 
 		for (int i = 0; i < trainer.size(); i++) {
@@ -203,7 +208,9 @@ public class Main {
 				System.out.println(" \u2714" + " Trainer has removed");
 				System.out.println();
 				tOptions(trainer);
+				break;
 			}
+
 		}
 
 	}
@@ -211,7 +218,7 @@ public class Main {
 	// updating trainer details
 
 	public static void updateT(List<Trainer> trainer) {
-		System.out.print("Enter Trainer id: ");
+		System.out.print("Enter Trainer ID: ");
 		int tid = sc.nextInt();
 
 		int i = 0;
@@ -221,19 +228,19 @@ public class Main {
 		}
 		if (i < trainer.size()) {
 
-			System.out.print("id: ");
+			System.out.print("ID: ");
 			int id = sc.nextInt();
-			System.out.print("name: ");
+			System.out.print("NAME: ");
 			String name = sc.next();
-			System.out.print("contact: ");
+			System.out.print("CONTACT: ");
 			long contact = sc.nextLong();
-			System.out.print("email: ");
+			System.out.print("EMAIL: ");
 			String email = sc.next();
-			System.out.print("sal: ");
+			System.out.print("SALARY: ");
 			double sal = sc.nextDouble();
-			System.out.print("exp: ");
+			System.out.print("EXPERIENCE: ");
 			int exp = sc.nextInt();
-			System.out.print("subject: ");
+			System.out.print("SUBJECT: ");
 			String sub = sc.next();
 
 			Trainer t = new Trainer(id, name, contact, email, sal, exp, sub);
@@ -275,15 +282,16 @@ public class Main {
 			Integer sid = sc.nextInt();
 			int i = 0;
 
-			while (trainer.get(i).id != sid && i < trainer.size()) {
+			while (i < trainer.size() && trainer.get(i).id != sid) {
 				i++;
 			}
 			if (i < trainer.size()) {
-				System.out.println(trainer.get(i).id + "\n" + trainer.get(i).name);
-				System.out.println(trainer.get(i).contact + "\n" + trainer.get(i).email);
-				System.out.println(trainer.get(i).sub + "\n" + trainer.get(i).exp + " y");
+				System.out.println("ID: "+trainer.get(i).id + "\n" +"NAME: "+ trainer.get(i).name);
+				System.out.println("CONTACT: "+trainer.get(i).contact + "\n" +"TRAINER: "+ trainer.get(i).email);
+				System.out.println("SUBJECT: "+trainer.get(i).sub + "\n" +"EXPERIENCE: "+ trainer.get(i).exp + " y");
 				System.out.println();
 				tOptions(trainer);
+				break;
 			}
 			System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
 
@@ -300,19 +308,19 @@ public class Main {
 	// adding trainers
 
 	public static void addT(List<Trainer> trainer) {
-		System.out.print("id: ");
+		System.out.print("ID: ");
 		int id = sc.nextInt();
-		System.out.print("name: ");
+		System.out.print("NAME: ");
 		String name = sc.next();
-		System.out.print("contact: ");
+		System.out.print("CONTACT: ");
 		long contact = sc.nextLong();
-		System.out.print("email: ");
+		System.out.print("EMAIL: ");
 		String email = sc.next();
-		System.out.print("sal: ");
+		System.out.print("SALARY: ");
 		double sal = sc.nextDouble();
-		System.out.print("exp: ");
+		System.out.print("EXPERIENCE: ");
 		int exp = sc.nextInt();
-		System.out.print("subject: ");
+		System.out.print("SUBJECT: ");
 		String sub = sc.next();
 
 		Trainer t = new Trainer(id, name, contact, email, sal, exp, sub);
@@ -348,9 +356,9 @@ public class Main {
 
 	public static void printS(List<Student> student) {
 		for (int i = 0; i < student.size(); i++) {
-			System.out.println(student.get(i).id + "\n" + student.get(i).name);
-			System.out.println(student.get(i).contact + "\n" + student.get(i).email);
-			System.out.println(student.get(i).percent + "\n" + student.get(i).course + "\n" + student.get(i).stream);
+			System.out.println("ID: "+student.get(i).id + "\n" + "NAME: "+student.get(i).name);
+			System.out.println("CONTACT: "+student.get(i).contact + "\n" +"EMAIL: "+ student.get(i).email);
+			System.out.println("PERCENT: "+student.get(i).percent + "\n" +"COURSE: "+ student.get(i).course + "\n" + "STREAM: "+student.get(i).stream);
 			System.out.println();
 
 		}
@@ -395,7 +403,7 @@ public class Main {
 	// removing the student
 
 	public static void removeS(List<Student> student) {
-		System.out.print("enter student id: ");
+		System.out.print("enter student ID: ");
 		int tid = sc.nextInt();
 
 		for (int i = 0; i < student.size(); i++) {
@@ -404,6 +412,7 @@ public class Main {
 				System.out.println(" \u2714" + " Student has removed");
 				System.out.println();
 				sOptions(student);
+				break;
 			}
 		}
 	}
@@ -413,29 +422,29 @@ public class Main {
 	public static void updateS(List<Student> student) {
 		
 		System.out.println();
-		System.out.print("Enter Student id: ");
+		System.out.print("Enter Student ID: ");
 		int tid = sc.nextInt();
 
 		int i = 0;
 
-		while (tid != student.get(i).id && i < student.size()) {
+		while (i < student.size() && tid != student.get(i).id ) {
 			i++;
 		}
 		if (i < student.size()) {
 
-			System.out.print("id: ");
+			System.out.print("ID: ");
 			int id = sc.nextInt();
-			System.out.print("name: ");
+			System.out.print("NAME: ");
 			String name = sc.next();
-			System.out.print("contact: ");
+			System.out.print("CONTACT: ");
 			long contact = sc.nextLong();
-			System.out.print("email: ");
+			System.out.print("EMAIL: ");
 			String email = sc.next();
-			System.out.print("percent: ");
+			System.out.print("PERCENT: ");
 			double percent = sc.nextDouble();
-			System.out.print("course: ");
+			System.out.print("COURSE: ");
 			String course = sc.next();
-			System.out.print("stream: ");
+			System.out.print("STREAM: ");
 			String stream = sc.next();
 
 			Student s = new Student(id, name, contact, email, percent, course, stream);
@@ -471,7 +480,7 @@ public class Main {
 			break;
 		case 2:
 			System.out.println();
-			System.out.print("enter student Id: ");
+			System.out.print("enter student ID: ");
 			int sid = sc.nextInt();
 			int i = 0;
 
@@ -481,11 +490,12 @@ public class Main {
 			if(i<student.size())
 			{
 				System.out.println();
-				System.out.println(student.get(i).id + "\n" + student.get(i).name);
-				System.out.println(student.get(i).contact + "\n" + student.get(i).email);
-				System.out.println(student.get(i).percent + "\n" + student.get(i).course + "\n" + student.get(i).stream);
+				System.out.println("ID: "+student.get(i).id + "\n" +"NAME: "+ student.get(i).name);
+				System.out.println("CONTACT: "+student.get(i).contact + "\n" + "EMAIL: "+student.get(i).email);
+				System.out.println("PERCENT: "+student.get(i).percent + "\n" + "COURSE: "+student.get(i).course + "\n" + student.get(i).stream);
 				System.out.println();
 				sOptions(student);
+				break;
 			}
 			System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
 
@@ -502,19 +512,19 @@ public class Main {
 	// adding students
 
 	public static void addS(List<Student> student) {
-		System.out.print("id: ");
+		System.out.print("ID: ");
 		int id = sc.nextInt();
-		System.out.print("name: ");
+		System.out.print("NAME: ");
 		String name = sc.next();
-		System.out.print("contact: ");
+		System.out.print("CONTACT: ");
 		long contact = sc.nextLong();
-		System.out.print("email: ");
+		System.out.print("EMAIL: ");
 		String email = sc.next();
-		System.out.print("percent: ");
+		System.out.print("PERCENT: ");
 		double percent = sc.nextDouble();
-		System.out.print("course: ");
+		System.out.print("COURSE: ");
 		String course = sc.next();
-		System.out.print("stream: ");
+		System.out.print("STREAM: ");
 		String stream = sc.next();
 
 		Student s = new Student(id, name, contact, email, percent, course, stream);
@@ -548,9 +558,9 @@ public class Main {
 
 	public static void printE(List<Employee> employee) {
 		for (int i = 0; i < employee.size(); i++) {
-			System.out.println(employee.get(i).id + "\n" + employee.get(i).name);
-			System.out.println(employee.get(i).contact + "\n" + employee.get(i).email);
-			System.out.println(employee.get(i).exp +" y"+ "\n" + employee.get(i).designation);
+			System.out.println("ID: "+employee.get(i).id + "\n" + "NAME: "+employee.get(i).name);
+			System.out.println("CONTACT: "+employee.get(i).contact + "\n" +"EMAIL: "+ employee.get(i).email);
+			System.out.println("EXPERIENCE: "+employee.get(i).exp +" y"+ "\n" + "DESIGNATION: "+employee.get(i).designation);
 			System.out.println();
 
 		}
@@ -597,7 +607,7 @@ public class Main {
 	// removing the employee
 
 	public static void removeE(List<Employee> employee) {
-		System.out.print("enter trainer id: ");
+		System.out.print("enter trainer ID: ");
 		int tid = sc.nextInt();
 
 		for (int i = 0; i < employee.size(); i++) {
@@ -606,6 +616,7 @@ public class Main {
 				System.out.println(" \u2714" + " Employee has removed");
 				System.out.println();
 				eOptions(employee);
+				break;
 			}
 		}
 	}
@@ -613,7 +624,7 @@ public class Main {
 	// updating employee details
 
 	public static void updateE(List<Employee> employee) {
-		System.out.print("Enter Employee id: ");
+		System.out.print("Enter Employee ID: ");
 		int tid = sc.nextInt();
 
 		int i = 0;
@@ -623,19 +634,19 @@ public class Main {
 		}
 		if (i < employee.size()) {
 
-			System.out.print("id: ");
+			System.out.print("ID: ");
 			int id = sc.nextInt();
-			System.out.print("name: ");
+			System.out.print("NAME: ");
 			String name = sc.next();
-			System.out.print("contact: ");
+			System.out.print("CONTACT: ");
 			long contact = sc.nextLong();
-			System.out.print("email: ");
+			System.out.print("EMAIL: ");
 			String email = sc.next();
-			System.out.print("sal: ");
+			System.out.print("SALARY: ");
 			double sal = sc.nextDouble();
-			System.out.print("exp: ");
+			System.out.print("EXPERIENCE: ");
 			int exp = sc.nextInt();
-			System.out.print("designation: ");
+			System.out.print("DESIGNATION: ");
 			String designation = sc.next();
 
 //			Employee(int id, String name, long contact, String email, double sal, int exp, String designation) {
@@ -643,7 +654,8 @@ public class Main {
 			Employee e = new Employee(id, name, contact, email, sal, exp, designation);
 
 			employee.set(i, e);
-		} else {
+		}
+		 else {
 			System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
 			eOptions(employee);
 		}
@@ -669,7 +681,7 @@ public class Main {
 			break;
 		case 2:
 			System.out.println();
-			System.out.print("enter employee Id: ");
+			System.out.print("enter employee ID: ");
 			int sid = sc.nextInt();
 			int i = 0;
 
@@ -679,11 +691,12 @@ public class Main {
 			if(i<employee.size())
 			{
 				System.out.println();
-				System.out.println(employee.get(i).id + "\n" + employee.get(i).name);
-				System.out.println(employee.get(i).contact + "\n" + employee.get(i).email);
-				System.out.println(employee.get(i).exp + "\n" + employee.get(i).designation);
+				System.out.println("ID: "+employee.get(i).id + "\n" +"NAME: "+ employee.get(i).name);
+				System.out.println("CONTACT: "+employee.get(i).contact + "\n" +"EMAIL: "+ employee.get(i).email);
+				System.out.println("EXPERIENCE: "+employee.get(i).exp + "\n" + "DESIGNATION: "+employee.get(i).designation);
 				System.out.println();
 				eOptions(employee);
+				break;
 			}
 			
 			System.out.println("\u26A0" + " " + "\u26A0" + " enter valid input" + "\u26A0" + " " + "\u26A0");
@@ -700,19 +713,19 @@ public class Main {
 	// adding employee
 
 	public static void addE(List<Employee> employee) {
-		System.out.print("id: ");
+		System.out.print("ID: ");
 		int id = sc.nextInt();
-		System.out.print("name: ");
+		System.out.print("NAME: ");
 		String name = sc.next();
-		System.out.print("contact: ");
+		System.out.print("CONTACT: ");
 		long contact = sc.nextLong();
-		System.out.print("email: ");
+		System.out.print("EMAIL: ");
 		String email = sc.next();
-		System.out.print("sal: ");
+		System.out.print("SALARY: ");
 		double sal = sc.nextDouble();
-		System.out.print("exp: ");
+		System.out.print("EXPERIENCE: ");
 		int exp = sc.nextInt();
-		System.out.print("designation: ");
+		System.out.print("DESIGNATION: ");
 		String designation = sc.next();
 
 //		Employee(int id, String name, long contact, String email, double sal, int exp, String designation) {
